@@ -1,19 +1,14 @@
 syntax = "proto3";
 
-package booking.v1;
+package v1;
 
-option go_package = "github.com/your-org/cinema-booking-proto/booking/v1;bookingv1";
+option go_package = "github.com/s-usmonalizoda25/bookingServiceCinemaProject/bookingpb/v1;v1";
 
 service BookingService {
     rpc CreateBooking(CreateBookingRequest) returns (CreateBookingResponse);
-
     rpc GetBooking(GetBookingRequest) returns (GetBookingResponse);
-
-    rpc GetUserBookings(GetUserBookingsRequest)
-        returns (GetUserBookingsResponse);
-
-    rpc CancelBooking(CancelBookingRequest)
-        returns (CancelBookingResponse);
+    rpc GetUserBookings(GetUserBookingsRequest) returns (GetUserBookingsResponse);
+    rpc CancelBooking(CancelBookingRequest) returns (CancelBookingResponse);
 }
 
 enum BookingStatus {
@@ -24,15 +19,15 @@ enum BookingStatus {
 }
 
 message Booking {
-    string id = 1;
-    string user_id = 2;
-    string movie_id = 3;
+    int64 id = 1;
+    int64 user_id = 2;
+    int64 movie_id = 3;
     BookingStatus status = 4;
 }
 
 message CreateBookingRequest {
-    string user_id = 1;
-    string movie_id = 2;
+    int64 user_id = 1;
+    int64 movie_id = 2;
 }   
 
 message CreateBookingResponse {
@@ -40,7 +35,7 @@ message CreateBookingResponse {
 }
 
 message GetBookingRequest {
-    string id = 1;
+    int64 id = 1;
 }
 
 message GetBookingResponse {
@@ -48,7 +43,7 @@ message GetBookingResponse {
 }
 
 message GetUserBookingsRequest {
-    string user_id = 1;
+    int64 user_id = 1;
 }
 
 message GetUserBookingsResponse {
@@ -56,7 +51,9 @@ message GetUserBookingsResponse {
 }
 
 message CancelBookingRequest {
-    string id = 1;
+    int64 id = 1;
 }
 
-message CancelBookingResponse {}
+message CancelBookingResponse {
+    bool success = 1;
+}
