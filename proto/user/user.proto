@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user.v1;
 
-option go_package = "userpb/v1;user";
+option go_package = "./genproto/user;userpb";
 
 service UserService {
     rpc Add(CreateUserRequest) returns (CreateUserResponse);
@@ -18,7 +18,11 @@ message CreateUserRequest {
     int32 age = 5;
 }
 
-message CreateUserRequest {
+message CreateUserResponse {
+    int64 id = 1;
+}
+
+message GetUserRequest {
     int64 id = 1;
 }
 
@@ -36,7 +40,7 @@ message UpdateUserRequest {
     string phone = 3;
 }
 
-message UpdateUserResponce {
+message UpdateUserResponse {
     int32 code = 1;
     string message = 2;
 }
