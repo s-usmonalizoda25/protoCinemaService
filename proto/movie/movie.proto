@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package movie.v1;
 
-option go_package = "./genproto/movie;moviepb";
+option go_package = "gen/movie;moviepb";
 
 service MovieService {
   rpc Create(CreateMovieRequest) returns (CreateMovieResponse);

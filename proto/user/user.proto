@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package user.v1;
 
-option go_package = "./genproto/user;userpb";
+option go_package = "gen/user;userpb";
 
 service UserService {
     rpc Add(CreateUserRequest) returns (CreateUserResponse);

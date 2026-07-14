@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package booking.v1;
 
-option go_package = "./genproto/booking;bookingpb";
+option go_package = "gen/booking;bookingpb";
 
 service BookingService {
     rpc CreateBooking(CreateBookingRequest) returns (CreateBookingResponse);
