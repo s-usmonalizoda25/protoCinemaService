@@ -8,6 +8,7 @@ service UserService {
     rpc Add(CreateUserRequest) returns (CreateUserResponse);
     rpc GetByID(GetUserRequest) returns (GetUserResponse);
     rpc Update(UpdateUserRequest) returns (UpdateUserResponse);
+    rpc Login(LoginRequest) returns (LoginResponse);
 }
 
 message CreateUserRequest {
@@ -43,4 +44,15 @@ message UpdateUserRequest {
 message UpdateUserResponse {
     int32 code = 1;
     string message = 2;
+}
+
+message LoginRequest {
+    string email = 1;
+    string password = 2;
+}
+
+message LoginResponse {
+    int64 id = 1;
+    string email = 2;
+    string password_hash = 3;
 }
