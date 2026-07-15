@@ -428,8 +428,8 @@ func (x *LoginRequest) GetPassword() string {
 type LoginResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
-	Email         string                 `protobuf:"bytes,2,opt,name=email,proto3" json:"email,omitempty"`
-	PasswordHash  string                 `protobuf:"bytes,3,opt,name=password_hash,json=passwordHash,proto3" json:"password_hash,omitempty"`
+	AccessToken   string                 `protobuf:"bytes,2,opt,name=access_token,json=accessToken,proto3" json:"access_token,omitempty"`
+	RefreshToken  string                 `protobuf:"bytes,3,opt,name=refresh_token,json=refreshToken,proto3" json:"refresh_token,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -471,16 +471,16 @@ func (x *LoginResponse) GetId() int64 {
 	return 0
 }
 
-func (x *LoginResponse) GetEmail() string {
+func (x *LoginResponse) GetAccessToken() string {
 	if x != nil {
-		return x.Email
+		return x.AccessToken
 	}
 	return ""
 }
 
-func (x *LoginResponse) GetPasswordHash() string {
+func (x *LoginResponse) GetRefreshToken() string {
 	if x != nil {
-		return x.PasswordHash
+		return x.RefreshToken
 	}
 	return ""
 }
@@ -515,11 +515,11 @@ const file_proto_user_user_proto_rawDesc = "" +
 	"\amessage\x18\x02 \x01(\tR\amessage\"@\n" +
 	"\fLoginRequest\x12\x14\n" +
 	"\x05email\x18\x01 \x01(\tR\x05email\x12\x1a\n" +
-	"\bpassword\x18\x02 \x01(\tR\bpassword\"Z\n" +
+	"\bpassword\x18\x02 \x01(\tR\bpassword\"g\n" +
 	"\rLoginResponse\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x14\n" +
-	"\x05email\x18\x02 \x01(\tR\x05email\x12#\n" +
-	"\rpassword_hash\x18\x03 \x01(\tR\fpasswordHash2\x86\x02\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\x12!\n" +
+	"\faccess_token\x18\x02 \x01(\tR\vaccessToken\x12#\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken2\x86\x02\n" +
 	"\vUserService\x12>\n" +
 	"\x03Add\x12\x1a.user.v1.CreateUserRequest\x1a\x1b.user.v1.CreateUserResponse\x12<\n" +
 	"\aGetByID\x12\x17.user.v1.GetUserRequest\x1a\x18.user.v1.GetUserResponse\x12A\n" +
