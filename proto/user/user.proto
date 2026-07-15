@@ -71,4 +71,5 @@ message LoginResponse {
     int64 id = 1;
     string access_token = 2;
     string refresh_token = 3;
+    int32 role = 4;
 }
