@@ -21,6 +21,55 @@ const (
 	_ = protoimpl.EnforceVersion(protoimpl.MaxVersion - 20)
 )
 
+type UserRole int32
+
+const (
+	UserRole_USER_ROLE_UNSPECIFIED UserRole = 0
+	UserRole_USER_ROLE_USER        UserRole = 1
+	UserRole_USER_ROLE_ADMIN       UserRole = 2
+)
+
+// Enum value maps for UserRole.
+var (
+	UserRole_name = map[int32]string{
+		0: "USER_ROLE_UNSPECIFIED",
+		1: "USER_ROLE_USER",
+		2: "USER_ROLE_ADMIN",
+	}
+	UserRole_value = map[string]int32{
+		"USER_ROLE_UNSPECIFIED": 0,
+		"USER_ROLE_USER":        1,
+		"USER_ROLE_ADMIN":       2,
+	}
+)
+
+func (x UserRole) Enum() *UserRole {
+	p := new(UserRole)
+	*p = x
+	return p
+}
+
+func (x UserRole) String() string {
+	return protoimpl.X.EnumStringOf(x.Descriptor(), protoreflect.EnumNumber(x))
+}
+
+func (UserRole) Descriptor() protoreflect.EnumDescriptor {
+	return file_proto_user_user_proto_enumTypes[0].Descriptor()
+}
+
+func (UserRole) Type() protoreflect.EnumType {
+	return &file_proto_user_user_proto_enumTypes[0]
+}
+
+func (x UserRole) Number() protoreflect.EnumNumber {
+	return protoreflect.EnumNumber(x)
+}
+
+// Deprecated: Use UserRole.Descriptor instead.
+func (UserRole) EnumDescriptor() ([]byte, []int) {
+	return file_proto_user_user_proto_rawDescGZIP(), []int{0}
+}
+
 type CreateUserRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -28,6 +77,7 @@ type CreateUserRequest struct {
 	Phone         string                 `protobuf:"bytes,3,opt,name=phone,proto3" json:"phone,omitempty"`
 	Password      string                 `protobuf:"bytes,4,opt,name=password,proto3" json:"password,omitempty"`
 	Age           int32                  `protobuf:"varint,5,opt,name=age,proto3" json:"age,omitempty"`
+	Role          UserRole               `protobuf:"varint,6,opt,name=role,proto3,enum=user.v1.UserRole" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -95,6 +145,13 @@ func (x *CreateUserRequest) GetAge() int32 {
 		return x.Age
 	}
 	return 0
+}
+
+func (x *CreateUserRequest) GetRole() UserRole {
+	if x != nil {
+		return x.Role
+	}
+	return UserRole_USER_ROLE_UNSPECIFIED
 }
 
 type CreateUserResponse struct {
@@ -192,6 +249,7 @@ type GetUserResponse struct {
 	Email         string                 `protobuf:"bytes,3,opt,name=email,proto3" json:"email,omitempty"`
 	Phone         string                 `protobuf:"bytes,4,opt,name=phone,proto3" json:"phone,omitempty"`
 	Age           int32                  `protobuf:"varint,5,opt,name=age,proto3" json:"age,omitempty"`
+	Role          UserRole               `protobuf:"varint,6,opt,name=role,proto3,enum=user.v1.UserRole" json:"role,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -259,6 +317,13 @@ func (x *GetUserResponse) GetAge() int32 {
 		return x.Age
 	}
 	return 0
+}
+
+func (x *GetUserResponse) GetRole() UserRole {
+	if x != nil {
+		return x.Role
+	}
+	return UserRole_USER_ROLE_UNSPECIFIED
 }
 
 type UpdateUserRequest struct {
@@ -489,23 +554,25 @@ var File_proto_user_user_proto protoreflect.FileDescriptor
 
 const file_proto_user_user_proto_rawDesc = "" +
 	"\n" +
-	"\x15proto/user/user.proto\x12\auser.v1\"\x81\x01\n" +
+	"\x15proto/user/user.proto\x12\auser.v1\"\xa8\x01\n" +
 	"\x11CreateUserRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x02 \x01(\tR\x05email\x12\x14\n" +
 	"\x05phone\x18\x03 \x01(\tR\x05phone\x12\x1a\n" +
 	"\bpassword\x18\x04 \x01(\tR\bpassword\x12\x10\n" +
-	"\x03age\x18\x05 \x01(\x05R\x03age\"$\n" +
+	"\x03age\x18\x05 \x01(\x05R\x03age\x12%\n" +
+	"\x04role\x18\x06 \x01(\x0e2\x11.user.v1.UserRoleR\x04role\"$\n" +
 	"\x12CreateUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\" \n" +
 	"\x0eGetUserRequest\x12\x0e\n" +
-	"\x02id\x18\x01 \x01(\x03R\x02id\"s\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\"\x9a\x01\n" +
 	"\x0fGetUserResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
 	"\x05email\x18\x03 \x01(\tR\x05email\x12\x14\n" +
 	"\x05phone\x18\x04 \x01(\tR\x05phone\x12\x10\n" +
-	"\x03age\x18\x05 \x01(\x05R\x03age\"M\n" +
+	"\x03age\x18\x05 \x01(\x05R\x03age\x12%\n" +
+	"\x04role\x18\x06 \x01(\x0e2\x11.user.v1.UserRoleR\x04role\"M\n" +
 	"\x11UpdateUserRequest\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12\x12\n" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x14\n" +
@@ -519,7 +586,11 @@ const file_proto_user_user_proto_rawDesc = "" +
 	"\rLoginResponse\x12\x0e\n" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\x12!\n" +
 	"\faccess_token\x18\x02 \x01(\tR\vaccessToken\x12#\n" +
-	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken2\x86\x02\n" +
+	"\rrefresh_token\x18\x03 \x01(\tR\frefreshToken*N\n" +
+	"\bUserRole\x12\x19\n" +
+	"\x15USER_ROLE_UNSPECIFIED\x10\x00\x12\x12\n" +
+	"\x0eUSER_ROLE_USER\x10\x01\x12\x13\n" +
+	"\x0fUSER_ROLE_ADMIN\x10\x022\x86\x02\n" +
 	"\vUserService\x12>\n" +
 	"\x03Add\x12\x1a.user.v1.CreateUserRequest\x1a\x1b.user.v1.CreateUserResponse\x12<\n" +
 	"\aGetByID\x12\x17.user.v1.GetUserRequest\x1a\x18.user.v1.GetUserResponse\x12A\n" +
@@ -538,31 +609,35 @@ func file_proto_user_user_proto_rawDescGZIP() []byte {
 	return file_proto_user_user_proto_rawDescData
 }
 
+var file_proto_user_user_proto_enumTypes = make([]protoimpl.EnumInfo, 1)
 var file_proto_user_user_proto_msgTypes = make([]protoimpl.MessageInfo, 8)
 var file_proto_user_user_proto_goTypes = []any{
-	(*CreateUserRequest)(nil),  // 0: user.v1.CreateUserRequest
-	(*CreateUserResponse)(nil), // 1: user.v1.CreateUserResponse
-	(*GetUserRequest)(nil),     // 2: user.v1.GetUserRequest
-	(*GetUserResponse)(nil),    // 3: user.v1.GetUserResponse
-	(*UpdateUserRequest)(nil),  // 4: user.v1.UpdateUserRequest
-	(*UpdateUserResponse)(nil), // 5: user.v1.UpdateUserResponse
-	(*LoginRequest)(nil),       // 6: user.v1.LoginRequest
-	(*LoginResponse)(nil),      // 7: user.v1.LoginResponse
+	(UserRole)(0),              // 0: user.v1.UserRole
+	(*CreateUserRequest)(nil),  // 1: user.v1.CreateUserRequest
+	(*CreateUserResponse)(nil), // 2: user.v1.CreateUserResponse
+	(*GetUserRequest)(nil),     // 3: user.v1.GetUserRequest
+	(*GetUserResponse)(nil),    // 4: user.v1.GetUserResponse
+	(*UpdateUserRequest)(nil),  // 5: user.v1.UpdateUserRequest
+	(*UpdateUserResponse)(nil), // 6: user.v1.UpdateUserResponse
+	(*LoginRequest)(nil),       // 7: user.v1.LoginRequest
+	(*LoginResponse)(nil),      // 8: user.v1.LoginResponse
 }
 var file_proto_user_user_proto_depIdxs = []int32{
-	0, // 0: user.v1.UserService.Add:input_type -> user.v1.CreateUserRequest
-	2, // 1: user.v1.UserService.GetByID:input_type -> user.v1.GetUserRequest
-	4, // 2: user.v1.UserService.Update:input_type -> user.v1.UpdateUserRequest
-	6, // 3: user.v1.UserService.Login:input_type -> user.v1.LoginRequest
-	1, // 4: user.v1.UserService.Add:output_type -> user.v1.CreateUserResponse
-	3, // 5: user.v1.UserService.GetByID:output_type -> user.v1.GetUserResponse
-	5, // 6: user.v1.UserService.Update:output_type -> user.v1.UpdateUserResponse
-	7, // 7: user.v1.UserService.Login:output_type -> user.v1.LoginResponse
-	4, // [4:8] is the sub-list for method output_type
-	0, // [0:4] is the sub-list for method input_type
-	0, // [0:0] is the sub-list for extension type_name
-	0, // [0:0] is the sub-list for extension extendee
-	0, // [0:0] is the sub-list for field type_name
+	0, // 0: user.v1.CreateUserRequest.role:type_name -> user.v1.UserRole
+	0, // 1: user.v1.GetUserResponse.role:type_name -> user.v1.UserRole
+	1, // 2: user.v1.UserService.Add:input_type -> user.v1.CreateUserRequest
+	3, // 3: user.v1.UserService.GetByID:input_type -> user.v1.GetUserRequest
+	5, // 4: user.v1.UserService.Update:input_type -> user.v1.UpdateUserRequest
+	7, // 5: user.v1.UserService.Login:input_type -> user.v1.LoginRequest
+	2, // 6: user.v1.UserService.Add:output_type -> user.v1.CreateUserResponse
+	4, // 7: user.v1.UserService.GetByID:output_type -> user.v1.GetUserResponse
+	6, // 8: user.v1.UserService.Update:output_type -> user.v1.UpdateUserResponse
+	8, // 9: user.v1.UserService.Login:output_type -> user.v1.LoginResponse
+	6, // [6:10] is the sub-list for method output_type
+	2, // [2:6] is the sub-list for method input_type
+	2, // [2:2] is the sub-list for extension type_name
+	2, // [2:2] is the sub-list for extension extendee
+	0, // [0:2] is the sub-list for field type_name
 }
 
 func init() { file_proto_user_user_proto_init() }
@@ -575,13 +650,14 @@ func file_proto_user_user_proto_init() {
 		File: protoimpl.DescBuilder{
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_proto_user_user_proto_rawDesc), len(file_proto_user_user_proto_rawDesc)),
-			NumEnums:      0,
+			NumEnums:      1,
 			NumMessages:   8,
 			NumExtensions: 0,
 			NumServices:   1,
 		},
 		GoTypes:           file_proto_user_user_proto_goTypes,
 		DependencyIndexes: file_proto_user_user_proto_depIdxs,
+		EnumInfos:         file_proto_user_user_proto_enumTypes,
 		MessageInfos:      file_proto_user_user_proto_msgTypes,
 	}.Build()
 	File_proto_user_user_proto = out.File
